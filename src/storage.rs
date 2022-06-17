@@ -30,7 +30,6 @@ impl TasksRepo {
     }
 
     pub async fn get_all(&self) -> Result<Vec<Task>> {
-        //let options = FindOptions::builder().sort(doc! { "created_at": 1 }).build();
         let cursor = self.tasks.find(None, None).await?;
         let result = cursor.try_collect().await?;
         Ok(result)
